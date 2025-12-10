@@ -1,12 +1,10 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
+# Despliegue automático de sitio HTML a Azure App Service
 name: Deploy HTML site to Azure Web App
 
 on:
   push:
     branches:
-      - main
+      - main   # Se desplegará cada vez que haya cambios en main
   workflow_dispatch:
 
 jobs:
@@ -17,19 +15,19 @@ jobs:
       contents: read
 
     steps:
-      - name: Checkout code
+      - name: Descargar el código del repositorio
         uses: actions/checkout@v4
 
-      - name: Login to Azure
+      - name: Iniciar sesión en Azure
         uses: azure/login@v2
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_26CF35BCA26346E18DA9F8EB384CF9ED }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_4BA8D93741D2428495C158D752A2768A }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_65757854695A4B5CAAAD82955A6D092A }}
 
-      - name: Deploy to Azure Web App
+      - name: Desplegar a Azure Web App
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'innova-retail'
+          app-name: 'innova-retail'   # nombre exacto de tu Azure App Service
           slot-name: 'Production'
-          package: ./web
+          package: ./web   # carpeta donde está tu index.html
