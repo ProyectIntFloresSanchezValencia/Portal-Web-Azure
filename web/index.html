@@ -8,6 +8,41 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="style.css">
+
+    <script type="text/javascript">
+    var appInsights = window.appInsights || function (config) {
+        function r(config) {
+            t[config] = function () {
+                var i = arguments;
+                t.queue.push(function () {
+                    t[config].apply(t, i)
+                })
+            }
+        }
+
+        var t = { config: config }, u = document, e = window, o = "script",
+            s = u.createElement(o), i, f;
+
+        for (s.src = config.url || "https://js.monitor.azure.com/scripts/b/ai.2.min.js",
+            u.getElementsByTagName(o)[0].parentNode.appendChild(s),
+            t.cookie = u.cookie,
+            t.queue = [],
+            i = ["Event", "PageView", "Exception", "Trace", "DependencyData", "Metric", "PageViewPerformance"];
+            i.length;) r("track" + i.pop());
+
+        return r("trackException"),
+            r("trackTrace"),
+            r("trackMetric"),
+            r("trackPageView"),
+            t
+    }({
+        connectionString: "InstrumentationKey=4c645ed9-12d2-457c-b93f-732551064f7a;IngestionEndpoint=https://canadacentral-1.in.applicationinsights.azure.com/;LiveEndpoint=https://canadacentral.livediagnostics.monitor.azure.com/;ApplicationId=0cc5b6f7-2b56-4cf5-8f51-f302b9833c55"
+    });
+
+    window.appInsights = appInsights;
+    appInsights.trackPageView();
+</script>
+
 </head>
 
 <body>
